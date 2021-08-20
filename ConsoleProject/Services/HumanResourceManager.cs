@@ -8,36 +8,55 @@ namespace ConsoleProject.Services
 {
     class HumanResourceManager : IHumanResourceManager
     {
-        public List<Departament> Departament => throw new NotImplementedException();
+        private List<Departament> _departament;
+        public List<Departament> Departament
+        {
+            get
+            {
+                return _departament;
+            }
+        }
+        public HumanResourceManager()
+        {
+            _departament = new List<Departament>();
+        }
 
         public void AddDepartment(Departament departament)
         {
-            throw new NotImplementedException();
+            _departament.Add(departament); 
         }
 
         public void AddEmployee(Employee employee, string DepartamentName)
         {
-            throw new NotImplementedException();
+            Employee employee1 = new Employee();
+            employee1.Fullname = employee.Fullname;
+            employee1.Salary = employee.Salary;
+            employee1.Position = employee.Position;
+
+            foreach (Departament item in Departament)
+            {
+               
+            }
         }
 
         public void EditDepartaments(string name, string Newname)
         {
-            throw new NotImplementedException();
+           
         }
 
         public void EditEmploye(int number, string fullName, double salary, string position)
         {
-            throw new NotImplementedException();
+             
         }
 
         public List<Departament> GetAllDepartments()
         {
-            throw new NotImplementedException();
+            return Departament;
         }
 
         public void RemoveEmployee(int number, string departamentName)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
