@@ -15,12 +15,17 @@ namespace ConsoleProject.Services
             throw new NotImplementedException();
         }
 
-        public void EditDepartaments(Departament name, string Newname)
+        public void AddEmployee(Employee employee, string DepartamentName)
         {
             throw new NotImplementedException();
         }
 
-        public void EditEmploye(Employee nomre, Employee fullname, Employee salary, Employee position)
+        public void EditDepartaments(string name, string Newname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditEmploye(int number, string fullName, double salary, string position)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +35,7 @@ namespace ConsoleProject.Services
             throw new NotImplementedException();
         }
 
-        public void RemoveEmployee(Employee nomre, Departament name)
+        public void RemoveEmployee(int number, string departamentName)
         {
             throw new NotImplementedException();
         }

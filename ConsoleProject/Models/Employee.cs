@@ -35,13 +35,13 @@ namespace ConsoleProject.Models
 
         private bool NameCheck(string name)
         {
-            if (name.Length<2)
+            if (name.Length >= 2)
             {
                 return false;
             }
             foreach (char item in name)
             {
-                if (Char.IsLetter(item))
+                if (!Char.IsLetter(item))
                 {
                     return false;
                 }
@@ -50,11 +50,31 @@ namespace ConsoleProject.Models
 
         }
         public string Fullname;
-        public double Salary;
+        private double _salary;
+        public double Salary
+        {
+            get
+            {
+                return _salary;
+            }
+            set
+            {
+                if (value > 250)
+                {
+                    _salary = value;
+                }
+                else
+                {
+                    Console.WriteLine("ayliq mebleg min 250 olmalidir");
+                }
+            }
+        }
         public string DepartmentName;
 
-        
 
-        
+
+
     }
+
 }
+

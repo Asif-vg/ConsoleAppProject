@@ -11,8 +11,9 @@ namespace ConsoleProject.Interfaces
         public List<Departament> Departament { get;}
         public void AddDepartment(Departament departament);
         public List<Departament> GetAllDepartments();
-        public void EditDepartaments(Departament name,string Newname );
-        public void RemoveEmployee(Employee nomre, Departament name);
-        public void EditEmploye(Employee nomre,Employee fullname,Employee salary,Employee position);
+        public void EditDepartaments(string name,string Newname );
+        public void AddEmployee(Employee employee, string DepartamentName);
+        public void RemoveEmployee(int number, string departamentName);
+        public void EditEmploye(int number, string fullName, double salary, string position);
     }
 }
