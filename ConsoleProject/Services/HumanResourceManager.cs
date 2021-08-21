@@ -16,27 +16,29 @@ namespace ConsoleProject.Services
                 return _departament;
             }
         }
+        private List<Employee> _empmloyee;
+        public List<Employee> Employee 
+        {
+            get
+            {
+                return _empmloyee;
+            }
+        }
         public HumanResourceManager()
         {
+            _empmloyee = new List<Employee>();
             _departament = new List<Departament>();
         }
 
         public void AddDepartment(Departament departament)
         {
+
             _departament.Add(departament); 
         }
 
         public void AddEmployee(Employee employee, string DepartamentName)
         {
-            Employee employee1 = new Employee();
-            employee1.Fullname = employee.Fullname;
-            employee1.Salary = employee.Salary;
-            employee1.Position = employee.Position;
-
-            foreach (Departament item in Departament)
-            {
-               
-            }
+            _empmloyee.Add(employee);
         }
 
         public void EditDepartaments(string name, string Newname)
@@ -44,9 +46,16 @@ namespace ConsoleProject.Services
            
         }
 
-        public void EditEmploye(int number, string fullName, double salary, string position)
+        public void EditEmploye(string number, string fullName, double salary, string position)
         {
-             
+            Employee employees = FindEmployeeNo(number);
+
+            if (employees==null)
+            {
+                Console.WriteLine($"{number} nomreli isci yoxdur");
+                return;
+            }
+            employees.No = number;
         }
 
         public List<Departament> GetAllDepartments()
@@ -54,9 +63,31 @@ namespace ConsoleProject.Services
             return Departament;
         }
 
-        public void RemoveEmployee(int number, string departamentName)
+        public void RemoveEmployee(string number, string departamentName)
         {
             
+            Employee removeEmployee = _empmloyee.Find(e => e.No==number);
+
+            if (removeEmployee==null)
+            {
+                Console.WriteLine("Daxil edilen nomreli isci tapilmadi");
+            }
+            removeEmployee.No = number;
+            removeEmployee.DepartmentName = departamentName;
         }
+
+        public Employee FindEmployeeNo(string no)
+        {
+            
+            foreach (var item in _empmloyee)
+            {
+                if (item.No == no)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
     }
 }
