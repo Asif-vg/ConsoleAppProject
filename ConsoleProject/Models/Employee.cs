@@ -9,10 +9,13 @@ namespace ConsoleProject.Models
         private static int _counter = 1000;
         public Employee()
         {
+           
             _counter++;
-            No = DepartmentName.Substring(0, 2).ToUpper() + _counter;
+            No = _counter;
+         // no = DepartmentName.Substring(0, 2).ToUpper() + _counter;
         }
-        public string No;
+        public int No;
+        public string no;
         private string _position;
         public string Position
         {

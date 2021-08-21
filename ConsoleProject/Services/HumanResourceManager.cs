@@ -49,7 +49,7 @@ namespace ConsoleProject.Services
 
         public List<Employee> EditEmploye(string number, string fullName, double salary, string position)
         {
-            return _empmloyee.FindAll(e => e.No.ToLower() == number.ToLower() && e.Fullname.ToLower() == fullName.ToLower() && e.Salary == salary && e.Position.ToLower() == position.ToLower()).ToList();
+            return _empmloyee.FindAll(e => e.no.ToLower() == number.ToLower() && e.Fullname.ToLower() == fullName.ToLower() && e.Salary == salary && e.Position.ToLower() == position.ToLower()).ToList();
         }
 
         public List<Departament> GetAllDepartments()
@@ -60,22 +60,9 @@ namespace ConsoleProject.Services
         public void RemoveEmployee(string number, string departamentName)
         {
             var EmployeeList = _empmloyee.ToList();
-            var RemoveItem = _empmloyee.Find(e => e.No.ToLower() == number.ToLower() && e.DepartmentName.ToLower() == departamentName.ToLower());
+            var RemoveItem = _empmloyee.Find(e => e.no.ToLower() == number.ToLower() && e.DepartmentName.ToLower() == departamentName.ToLower());
             _empmloyee.Remove(RemoveItem);
         }
-
-        //public Employee FindEmployeeNo(string no)
-        //{
-            
-        //    foreach (var item in _empmloyee)
-        //    {
-        //        if (item.No == no)
-        //        {
-        //            return item;
-        //        }
-        //    }
-        //    return null;
-        //}
 
     }
 }

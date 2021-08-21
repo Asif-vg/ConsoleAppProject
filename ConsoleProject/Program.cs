@@ -5,10 +5,10 @@ namespace ConsoleProject
 {
     class Program
     {
-        HumanResourceManager humanResource = new HumanResourceManager();
+        private static HumanResourceManager humanResource = new HumanResourceManager();
         public Program()
         {
-            humanResource = new HumanResourceManager();
+             humanResource = new HumanResourceManager();
         }
         static void Main(string[] args)
         {
@@ -136,6 +136,7 @@ namespace ConsoleProject
                     case 3:
                         AddEmployee();
                         break;
+
                     case 4:
                         EditEmployee();
                         break;
@@ -171,22 +172,32 @@ namespace ConsoleProject
 
         static void ShowListEmployeeinDepartament()
         {
+            string departamentName = Console.ReadLine();
 
+            foreach (Employee employee in humanResource.Employee)
+            {
+                if (departamentName.ToLower()==employee.DepartmentName)
+                {
+                    Console.WriteLine(employee.Fullname);
+                    Console.WriteLine(employee.no);
+                    Console.WriteLine(employee.Position);
+                    Console.WriteLine(employee.Salary);
+                }
+            }
         }
         static void AddEmployee()
         {
-            //Employee employee = new Employee();
+            Console.WriteLine("Isci elave edin");
+           Employee employee = new Employee();
 
             Console.WriteLine("Iscinin fullname-ni daxil edin");
             string fullName = Console.ReadLine();
-            //employee.Fullname = fullName;
-            //Console.WriteLine();
-
+            
             Console.WriteLine("Iscinin position-nu daxil edin");
             string position = Console.ReadLine();
 
             Console.WriteLine("Iscinin elave olundugu departmentin adini daxil edin");
-            string departament = Console.ReadLine();
+            string departamentname = Console.ReadLine();
 
             Console.WriteLine("Iscinin maasini daxil edin");
             string salary = Console.ReadLine();
@@ -197,6 +208,12 @@ namespace ConsoleProject
                 salary = Console.ReadLine();
                 double.TryParse(salary, out salaryEmployee);
             }
+            employee.Salary = salaryEmployee;
+            employee.Fullname = fullName;
+            employee.Position = position;
+            employee.DepartmentName = departamentname;
+
+
         }
         static void EditEmployee()
         {
@@ -213,7 +230,7 @@ namespace ConsoleProject
             Console.WriteLine("Iscinin salary-ni daxil edin");
             double salary =Convert.ToDouble(Console.ReadLine());
 
-            if (no.ToLower() == employee.No.ToLower() && fullname.ToLower() == employee.Fullname.ToLower() && position.ToLower() == employee.Position.ToLower() && salary == employee.Salary) ;
+            if (no.ToLower() == employee.no.ToLower() && fullname.ToLower() == employee.Fullname.ToLower() && position.ToLower() == employee.Position.ToLower() && salary == employee.Salary);
             {
                 Console.WriteLine("İşçinin yeni adını daxil edin");
                 string newFullName = Console.ReadLine();
@@ -230,11 +247,23 @@ namespace ConsoleProject
                     newsalary = Console.ReadLine();
                     double.TryParse(newsalary, out newSalary);
                 }
+
+                Console.WriteLine("Iscinin yeni departament yerini daxil edin");
+                string DepartamentName = Console.ReadLine();
+                employee.DepartmentName = DepartamentName;
+                employee.Position = position;
+                employee.Salary = salary;
+                employee.Fullname = fullname;
             }
         }
         static void RemoveEmployee()
         {
-
+            Employee employee = new Employee();
+            Console.WriteLine("Isci silinmesi");
+            Console.WriteLine("Iscinin nomresini daxil edin");
+            string no = Console.ReadLine();
+            string departamentName = Console.ReadLine();
+            humanResource.RemoveEmployee(no, departamentName);
         }
 
     }
