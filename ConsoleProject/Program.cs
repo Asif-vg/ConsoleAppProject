@@ -6,6 +6,10 @@ namespace ConsoleProject
     class Program
     {
         HumanResourceManager humanResource = new HumanResourceManager();
+        public Program()
+        {
+            humanResource = new HumanResourceManager();
+        }
         static void Main(string[] args)
         {
             do
@@ -65,7 +69,7 @@ namespace ConsoleProject
                         Console.WriteLine("Secimi duzgun edin");
                         break;
                 }
-            } while (true);
+            } while (true); //bu hisse yaddan cixmasin
         }
 
         static void ShowListDepartament()
@@ -142,7 +146,7 @@ namespace ConsoleProject
                         Console.WriteLine("Secimi duzgun edin");
                         break;
                 }
-            } while (true);
+            } while (true); //bu hisse yaddan cixmasin!!!!!!!!!:(
         }
         #region ShowListEmployee
         //static void ShowListEmployee( ref  HumanResourceManager humanResource)               //BURANIN CASE HISSESINDE ERROR VERIR ONU DUZELDECEM
@@ -171,25 +175,62 @@ namespace ConsoleProject
         }
         static void AddEmployee()
         {
+            //Employee employee = new Employee();
+
             Console.WriteLine("Iscinin fullname-ni daxil edin");
             string fullName = Console.ReadLine();
+            //employee.Fullname = fullName;
+            //Console.WriteLine();
+
+            Console.WriteLine("Iscinin position-nu daxil edin");
+            string position = Console.ReadLine();
+
             Console.WriteLine("Iscinin elave olundugu departmentin adini daxil edin");
             string departament = Console.ReadLine();
+
             Console.WriteLine("Iscinin maasini daxil edin");
             string salary = Console.ReadLine();
-            int salaryEmployee;
-            while (!int.TryParse(salary, out salaryEmployee))
+            double salaryEmployee;
+            while (!double.TryParse(salary, out salaryEmployee))
             {
-                Console.WriteLine("salary 250-den asagi ola bilmez");
+                Console.WriteLine("Reqem daxil etmelisiz");
                 salary = Console.ReadLine();
-                int.TryParse(salary, out salaryEmployee);
+                double.TryParse(salary, out salaryEmployee);
             }
-
         }
         static void EditEmployee()
         {
-            Console.WriteLine("Deyismek istediyiniz iscinin nomresini daxil edin");
+            Employee employee = new Employee();
+            Console.WriteLine("Istediyiniz iscinin nomresini daxil edin");
+            string no = Console.ReadLine();
 
+            Console.WriteLine("Iscinin adini daxil edin");
+            string fullname = Console.ReadLine();
+
+            Console.WriteLine("Iscinin position-nu daxil edin");
+            string position = Console.ReadLine();
+
+            Console.WriteLine("Iscinin salary-ni daxil edin");
+            double salary =Convert.ToDouble(Console.ReadLine());
+
+            if (no.ToLower() == employee.No.ToLower() && fullname.ToLower() == employee.Fullname.ToLower() && position.ToLower() == employee.Position.ToLower() && salary == employee.Salary) ;
+            {
+                Console.WriteLine("İşçinin yeni adını daxil edin");
+                string newFullName = Console.ReadLine();
+                
+                Console.WriteLine("İşçinin yeni vəzifəsini daxil edin");
+                string newPosition = Console.ReadLine();
+                
+                Console.Write("İşçinin yeni maaşını daxil edin");
+                string newsalary = Console.ReadLine();
+                double newSalary;
+                while (!double.TryParse(newsalary,out newSalary))
+                {
+                    Console.WriteLine("Reqem daxil etmelisiz");
+                    newsalary = Console.ReadLine();
+                    double.TryParse(newsalary, out newSalary);
+                }
+            }
         }
         static void RemoveEmployee()
         {

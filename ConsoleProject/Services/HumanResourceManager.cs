@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ConsoleProject.Interfaces;
 using ConsoleProject.Models;
+using System.Linq;
 
 namespace ConsoleProject.Services
 {
@@ -41,53 +42,40 @@ namespace ConsoleProject.Services
             _empmloyee.Add(employee);
         }
 
-        public void EditDepartaments(string name, string Newname)
+        public List<Departament> EditDepartaments(string name, string Newname)
         {
-           
+            return _departament.FindAll(d => d.Name == name);
         }
 
-        public void EditEmploye(string number, string fullName, double salary, string position)
+        public List<Employee> EditEmploye(string number, string fullName, double salary, string position)
         {
-            Employee employees = FindEmployeeNo(number);
-
-            if (employees==null)
-            {
-                Console.WriteLine($"{number} nomreli isci yoxdur");
-                return;
-            }
-            employees.No = number;
+            return _empmloyee.FindAll(e => e.No.ToLower() == number.ToLower() && e.Fullname.ToLower() == fullName.ToLower() && e.Salary == salary && e.Position.ToLower() == position.ToLower()).ToList();
         }
 
         public List<Departament> GetAllDepartments()
         {
-            return Departament;
+            return _departament;
         }
 
         public void RemoveEmployee(string number, string departamentName)
         {
-            
-            Employee removeEmployee = _empmloyee.Find(e => e.No==number);
-
-            if (removeEmployee==null)
-            {
-                Console.WriteLine("Daxil edilen nomreli isci tapilmadi");
-            }
-            removeEmployee.No = number;
-            removeEmployee.DepartmentName = departamentName;
+            var EmployeeList = _empmloyee.ToList();
+            var RemoveItem = _empmloyee.Find(e => e.No.ToLower() == number.ToLower() && e.DepartmentName.ToLower() == departamentName.ToLower());
+            _empmloyee.Remove(RemoveItem);
         }
 
-        public Employee FindEmployeeNo(string no)
-        {
+        //public Employee FindEmployeeNo(string no)
+        //{
             
-            foreach (var item in _empmloyee)
-            {
-                if (item.No == no)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
+        //    foreach (var item in _empmloyee)
+        //    {
+        //        if (item.No == no)
+        //        {
+        //            return item;
+        //        }
+        //    }
+        //    return null;
+        //}
 
     }
 }
