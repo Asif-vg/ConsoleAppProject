@@ -72,7 +72,7 @@ namespace ConsoleProject
             } while (true); //bu hisse yaddan cixmasin
         }
 
-        static void ShowListDepartament()
+        static void ShowListDepartament() //show departaments in departament  list
         {
             if (humanResource.Departament.Count > 0)
             {
@@ -91,7 +91,7 @@ namespace ConsoleProject
             }
         }
 
-        static void CreateDepartament()
+        static void CreateDepartament()  //
         {
             Console.WriteLine("Departamentin adini daxil edin");
             string departamentName = Console.ReadLine();
@@ -120,7 +120,7 @@ namespace ConsoleProject
 
         }
 
-        static void EditDepartament()
+        static void EditDepartament() //edit new departament to departament list
         {
             Departament departament = new Departament();
             Console.WriteLine("Departament-in adini daxil edin");
@@ -199,7 +199,7 @@ namespace ConsoleProject
                 }
             } while (true); //bu hisse yaddan cixmasin!!!!!!!!!:(
         }
-        static void ShowListEmployee()              
+        static void ShowListEmployee()              // show employee in list
         {
             if (humanResource.Employee.Count > 0)
             {
@@ -217,7 +217,7 @@ namespace ConsoleProject
                 Console.WriteLine("===============================\n");
             }
         }
-        static void ShowListEmployeeinDepartament()
+        static void ShowListEmployeeinDepartament() //show employee list in departament
         {
             Console.WriteLine("Departament-in adini daxil edin");
             string departamentName = Console.ReadLine();
@@ -233,7 +233,7 @@ namespace ConsoleProject
                 }
             }
         }
-        static void AddEmployee()
+        static void AddEmployee() //add employee to employee list
         {
             Console.WriteLine("Isci elave edin");
            Employee employee = new Employee();
@@ -264,7 +264,7 @@ namespace ConsoleProject
 
 
         }
-        static void EditEmployee()
+        static void EditEmployee() //edit new employee 
         {
             Employee employee = new Employee();
             Console.WriteLine("Istediyiniz iscinin nomresini daxil edin");
@@ -307,7 +307,7 @@ namespace ConsoleProject
                 employee.Fullname = newFullName;
             }
         }
-        static void RemoveEmployee()
+        static void RemoveEmployee() //delete employee from list employee
         {
             Employee employee = new Employee();
             Console.WriteLine("Isci silinmesi");
