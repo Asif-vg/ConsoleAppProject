@@ -33,7 +33,7 @@ namespace ConsoleProject
                         return;
                     default:
                         Console.Clear();
-                        Console.WriteLine("duzgun secim daxile edin");
+                        Console.WriteLine("Duzgun secim daxil edin");
                         break;
                 }
 
@@ -74,7 +74,21 @@ namespace ConsoleProject
 
         static void ShowListDepartament()
         {
-
+            if (humanResource.Departament.Count > 0)
+            {
+                Console.WriteLine("\n=============Departaments==================");
+                foreach (var item in humanResource.Departament)
+                {
+                    Console.WriteLine($"Name: {item.Name} - WorkerLimit: {item.WorkerLimit}- SalaryLimit :{item.SalaryLimit}");
+                }
+                Console.WriteLine("===============================\n");
+            }
+            else
+            {
+                Console.WriteLine("\n===============================");
+                Console.WriteLine("Sistemde hec bir departament yoxdur!");
+                Console.WriteLine("===============================\n");
+            }
         }
 
         static void CreateDepartament()
@@ -84,10 +98,10 @@ namespace ConsoleProject
             Console.WriteLine("Isci sayini max daxil edin");
             string workerLimit = Console.ReadLine();
             int WorkerLimit;
-            while (int.TryParse(workerLimit, out WorkerLimit))
+            while (!int.TryParse(workerLimit, out WorkerLimit))
             {
 
-                Console.WriteLine("Isci sayini duzgun daxil edin");
+                Console.WriteLine("Reqem daxil etmelisiz");
                 workerLimit = Console.ReadLine();
                 int.TryParse(workerLimit, out WorkerLimit);
                 break;
@@ -96,9 +110,9 @@ namespace ConsoleProject
             Console.WriteLine("Iscelere ayliq cemi verilecek maximum mebleg");
             string salaryLimit = Console.ReadLine();
             int SalaryLimit;
-            while (int.TryParse(salaryLimit, out SalaryLimit))
+            while (!int.TryParse(salaryLimit, out SalaryLimit))
             {
-                Console.WriteLine("Meblegi duzgun daxil edin");
+                Console.WriteLine("Reqem daxil etmelisiz");
                 salaryLimit = Console.ReadLine();
                 int.TryParse(salaryLimit, out SalaryLimit);
                 break;
@@ -117,7 +131,7 @@ namespace ConsoleProject
                 Console.WriteLine("Seciminizi Edin");
                 Console.WriteLine(Environment.NewLine);
                 Console.WriteLine("1 - Iscilerin siyahisini gostermek");
-                Console.WriteLine("2 - Departamentdeki iscilerin siyahisini gostermrek");
+                Console.WriteLine("2 - Departamentdeki iscilerin siyahisini gostermek");
                 Console.WriteLine("3 - Isci elave etmek");
                 Console.WriteLine("4 - Isci uzerinde deyisiklik etmek");
                 Console.WriteLine("5 - Departamentden isci silinmesi");
@@ -128,7 +142,7 @@ namespace ConsoleProject
                 switch (chooseNumber)
                 {
                     case 1:
-                      //  ShowListEmployee( );
+                      ShowListEmployee( );
                         break;
                     case 2:
                         ShowListEmployeeinDepartament();
@@ -136,7 +150,6 @@ namespace ConsoleProject
                     case 3:
                         AddEmployee();
                         break;
-
                     case 4:
                         EditEmployee();
                         break;
@@ -149,29 +162,27 @@ namespace ConsoleProject
                 }
             } while (true); //bu hisse yaddan cixmasin!!!!!!!!!:(
         }
-        #region ShowListEmployee
-        //static void ShowListEmployee( ref  HumanResourceManager humanResource)               //BURANIN CASE HISSESINDE ERROR VERIR ONU DUZELDECEM
-        //{
-        //    if (humanResource.Employee.Count > 0)
-        //    {
-        //        Console.WriteLine("\n=============Isciler==================");
-        //        foreach (var item in humanResource.Employee)
-        //        {
-        //            Console.WriteLine($"Fullname: {item.Fullname} - No: {item.No}- DepartamentName :{item.DepartmentName} - Position: {item.Position} -  Salary: {item.Salary}");
-        //        }
-        //        Console.WriteLine("===============================\n");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("\n===============================");
-        //        Console.WriteLine("Sistemde hec bir isci yoxdur!");
-        //        Console.WriteLine("===============================\n");
-        //    }
-        //}
-        #endregion   //BURANIN CASE HISSESINDE ERROR VERIR ONU DUZELDECEM
-
+        static void ShowListEmployee()              
+        {
+            if (humanResource.Employee.Count > 0)
+            {
+                Console.WriteLine("\n=============Isciler==================");
+                foreach (var item in humanResource.Employee)
+                {
+                    Console.WriteLine($"Fullname: {item.Fullname} - No: {item.No}- DepartamentName :{item.DepartmentName} - Position: {item.Position} -  Salary: {item.Salary}");
+                }
+                Console.WriteLine("===============================\n");
+            }
+            else
+            {
+                Console.WriteLine("\n===============================");
+                Console.WriteLine("Sistemde hec bir isci yoxdur!");
+                Console.WriteLine("===============================\n");
+            }
+        }
         static void ShowListEmployeeinDepartament()
         {
+            Console.WriteLine("Departament adi daxil edin");
             string departamentName = Console.ReadLine();
 
             foreach (Employee employee in humanResource.Employee)
@@ -262,6 +273,7 @@ namespace ConsoleProject
             Console.WriteLine("Isci silinmesi");
             Console.WriteLine("Iscinin nomresini daxil edin");
             string no = Console.ReadLine();
+            Console.WriteLine("Iscinin departamentName-ni daxil edin");
             string departamentName = Console.ReadLine();
             humanResource.RemoveEmployee(no, departamentName);
         }

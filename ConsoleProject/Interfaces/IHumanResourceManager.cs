@@ -13,7 +13,7 @@ namespace ConsoleProject.Interfaces
         public List<Departament> GetAllDepartments();
         public List<Departament> EditDepartaments(string name,string Newname );
         public void AddEmployee(Employee employee, string DepartamentName);
-        public void RemoveEmployee(string number, string departamentName);  //string tipe birde baxmalisisan!!!!!!
+        public void RemoveEmployee(string number, string departamentName);  
         public List<Employee> EditEmploye(string number, string fullName, double salary, string position);
     }
 }
