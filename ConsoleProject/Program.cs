@@ -122,7 +122,44 @@ namespace ConsoleProject
 
         static void EditDepartament()
         {
+            Departament departament = new Departament();
+            Console.WriteLine("Departament-in adini daxil edin");
+            string name = Console.ReadLine();
 
+            Console.WriteLine("WorkerLimiti daxil edin");
+            int workerLimit = Convert.ToInt32(Console.ReadLine()) ;
+
+            Console.WriteLine("SalaryLimit-i daxil edin");
+            double salaryLimit = Convert.ToDouble(Console.ReadLine());
+
+            if (name.ToLower() == departament.Name.ToLower() && workerLimit == departament.WorkerLimit && salaryLimit == departament.SalaryLimit) ;
+            {
+                Console.WriteLine("Departament-in yeni adini daxil edin");
+                string newName = Console.ReadLine();
+
+                Console.WriteLine("Yeni WorkerLimiti daxil edin");
+                string newWorkerLimit = Console.ReadLine();
+                int newworkerLimit;
+                while (!int.TryParse(newWorkerLimit, out newworkerLimit))
+                {
+                    Console.WriteLine("Reqem daxil etmelisiz");
+                    newWorkerLimit = Console.ReadLine();
+                    int.TryParse(newWorkerLimit, out newworkerLimit);
+                }
+
+                Console.Write("Yeni SalaryLimit-i daxil edin");
+                string newsalaryLimit = Console.ReadLine();
+                double newSalaryLimit;
+                while (!double.TryParse(newsalaryLimit, out newSalaryLimit))
+                {
+                    Console.WriteLine("Reqem daxil etmelisiz");
+                    newsalaryLimit = Console.ReadLine();
+                    double.TryParse(newsalaryLimit, out newSalaryLimit);
+                }
+                departament.Name = newName;
+                departament.SalaryLimit = newSalaryLimit;
+                departament.WorkerLimit = newworkerLimit;
+            }
         }
         static void EmployeeOperation()
         {
@@ -182,7 +219,7 @@ namespace ConsoleProject
         }
         static void ShowListEmployeeinDepartament()
         {
-            Console.WriteLine("Departament adi daxil edin");
+            Console.WriteLine("Departament-in adini daxil edin");
             string departamentName = Console.ReadLine();
 
             foreach (Employee employee in humanResource.Employee)
@@ -222,6 +259,7 @@ namespace ConsoleProject
             employee.Salary = salaryEmployee;
             employee.Fullname = fullName;
             employee.Position = position;
+            employee.no = departamentname.Substring(0, 2).ToUpper() + employee.No;
             employee.DepartmentName = departamentname;
 
 
@@ -261,10 +299,12 @@ namespace ConsoleProject
 
                 Console.WriteLine("Iscinin yeni departament yerini daxil edin");
                 string DepartamentName = Console.ReadLine();
+
+                employee.no = DepartamentName.Substring(0, 2).ToUpper() + employee.No;
                 employee.DepartmentName = DepartamentName;
-                employee.Position = position;
-                employee.Salary = salary;
-                employee.Fullname = fullname;
+                employee.Position = newPosition;
+                employee.Salary = newSalary;
+                employee.Fullname = newFullName;
             }
         }
         static void RemoveEmployee()

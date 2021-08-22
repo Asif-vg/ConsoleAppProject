@@ -70,7 +70,7 @@ namespace ConsoleProject.Models
             }
             set
             {
-                if (value>250)
+                if (value > 250)
                 {
                     _salaryLimit = value;
                 }

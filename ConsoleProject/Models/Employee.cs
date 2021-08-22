@@ -9,10 +9,8 @@ namespace ConsoleProject.Models
         private static int _counter = 1000;
         public Employee()
         {
-           
             _counter++;
             No = _counter;
-         // no = DepartmentName.Substring(0, 2).ToUpper() + _counter;
         }
         public int No;
         public string no;
@@ -35,7 +33,6 @@ namespace ConsoleProject.Models
                 }
             }
         }
-
         private bool NameCheck(string name)
         {
             if (name.Length >= 2)
@@ -73,11 +70,8 @@ namespace ConsoleProject.Models
             }
         }
         public string DepartmentName;
-
-
-
-
     }
+
 
 }
 
