@@ -47,7 +47,7 @@ namespace ConsoleProject
             {
                 Console.WriteLine("Seciminizi Edin");
                 Console.WriteLine(Environment.NewLine);
-                Console.WriteLine("1 - Departameantlerin siyahisini gostermek");
+                Console.WriteLine("1 - Departamentlerin siyahisini gostermek");
                 Console.WriteLine("2 - Departamenet yaratmaq");
                 Console.WriteLine("3 - Departmanetde deyisiklik etmek");
                 Console.WriteLine(Environment.NewLine);
@@ -79,7 +79,7 @@ namespace ConsoleProject
                 Console.WriteLine("\n=============Departaments==================");
                 foreach (var item in humanResource.Departament)
                 {
-                    Console.WriteLine($"Name: {item.Name} - WorkerLimit: {item.WorkerLimit}- SalaryLimit :{item.SalaryLimit}");
+                    Console.WriteLine($"Name: {item.Name}\nWorkerLimit: {item.WorkerLimit}\nSalaryLimit :{item.SalaryLimit}");
                 }
                 Console.WriteLine("===============================\n");
             }
@@ -91,14 +91,14 @@ namespace ConsoleProject
             }
         }
 
-        static void CreateDepartament(HumanResourceManager humanResource)  //
+        static void CreateDepartament(HumanResourceManager humanResource)  
         {
             Departament departament = new Departament();
 
             Console.WriteLine("Departamentin adini daxil edin");
             string departamentName = Console.ReadLine();
             departament.Name = departamentName;
-
+            
             Console.WriteLine("Isci sayini max daxil edin");
             string workerLimit = Console.ReadLine();
             int WorkerLimit;
@@ -125,45 +125,42 @@ namespace ConsoleProject
 
         static void EditDepartament(HumanResourceManager humanResource) //edit new departament to departament list
         {
-            Departament departament = new Departament();
             Console.WriteLine("Departament-in adini daxil edin");
             string name = Console.ReadLine();
             Console.WriteLine();
+            Departament departament = humanResource.Departament.Find(d => d.Name.ToLower() == name.ToLower());
+            if (departament==null)
+            {
+                Console.WriteLine("Bu adda departament adi yodur");
+                return;
+            }
 
-            //Console.WriteLine("WorkerLimiti daxil edin");
-            //int workerLimit = Convert.ToInt32(Console.ReadLine()) ;
-
-            Console.WriteLine("SalaryLimit-i daxil edin");
-            double salaryLimit = Convert.ToDouble(Console.ReadLine());
-
-            if (name.ToLower() == departament.Name.ToLower());
+            if (name.ToLower() == departament.Name.ToLower()) ;
             {
                 Console.WriteLine("Departament-in yeni adini daxil edin");
                 string newName = Console.ReadLine();
                 departament.Name = newName;
+                Console.WriteLine();
 
-                //Console.WriteLine("Yeni WorkerLimiti daxil edin");
-                //string newWorkerLimit = Console.ReadLine();
-                //int newworkerLimit;
-                //while (!int.TryParse(newWorkerLimit, out newworkerLimit))
-                //{
-                //    Console.WriteLine("Reqem daxil etmelisiz");
-                //    newWorkerLimit = Console.ReadLine();
-                //    int.TryParse(newWorkerLimit, out newworkerLimit);
-                //}
+                Console.WriteLine("Yeni isci sayini max daxil edin");
+                string workerLimit = Console.ReadLine();
+                int WorkerLimit;
+                while (!int.TryParse(workerLimit, out WorkerLimit))
+                {
+                    Console.WriteLine("Reqem daxil etmelisiz");
+                    workerLimit = Console.ReadLine();
+                }
+                departament.WorkerLimit = WorkerLimit;
 
-                //Console.Write("Yeni SalaryLimit-i daxil edin");
-                //string newsalaryLimit = Console.ReadLine();
-                //double newSalaryLimit;
-                //while (!double.TryParse(newsalaryLimit, out newSalaryLimit))
-                //{
-                //    Console.WriteLine("Reqem daxil etmelisiz");
-                //    newsalaryLimit = Console.ReadLine();
-                //    double.TryParse(newsalaryLimit, out newSalaryLimit);
-                //}
-                //departament.Name = newName;
-                //departament.SalaryLimit = newSalaryLimit;
-                //departament.WorkerLimit = newworkerLimit;
+                Console.WriteLine("Iscelere yeni ayliq cemi verilecek maximum mebleg");
+                string salaryLimit = Console.ReadLine();
+                int SalaryLimit;
+                while (!int.TryParse(salaryLimit, out SalaryLimit))
+                {
+                    Console.WriteLine("Reqem daxil etmelisiz");
+
+                }
+                departament.SalaryLimit = SalaryLimit;
 
                 humanResource.EditDepartaments(name, newName);
             }
@@ -213,7 +210,7 @@ namespace ConsoleProject
                 Console.WriteLine("\n=============Isciler==================");
                 foreach (var item in humanResource.Employee)
                 {
-                    Console.WriteLine($"Fullname: {item.Fullname} - No: {item.No}- DepartamentName :{item.DepartmentName} - Position: {item.Position} -  Salary: {item.Salary}");
+                    Console.WriteLine($"Fullname: {item.Fullname}\nNo: {item.No}\nDepartamentName :{item.DepartmentName}\nPosition: {item.Position}\nSalary: {item.Salary}");
                 }
                 Console.WriteLine("===============================\n");
             }
@@ -233,10 +230,7 @@ namespace ConsoleProject
             {
                 if (departamentName.ToLower()==employee.DepartmentName)
                 {
-                    Console.WriteLine(employee.Fullname);
-                    Console.WriteLine(employee.no);
-                    Console.WriteLine(employee.Position);
-                    Console.WriteLine(employee.Salary);
+                    Console.WriteLine($"Fullname:{employee.Fullname}\nno:{employee.no}\nPosition:{employee.Position}\nSalary:{employee.Salary}");
                 }
             }
         }
@@ -276,35 +270,27 @@ namespace ConsoleProject
             
             employee.no = employee.DepartmentName.Substring(0, 2).ToUpper() + employee.No;
 
-
             humanResource.AddEmployee(employee);
         }
         static void EditEmployee(HumanResourceManager humanResource) //edit new employee 
         {
-            Employee employee = new Employee();
             Console.WriteLine("Istediyiniz iscinin nomresini daxil edin");
             string no = Console.ReadLine();
 
-            Console.WriteLine("Iscinin adini daxil edin");
-            string fullname = Console.ReadLine();
-
-            Console.WriteLine("Iscinin position-nu daxil edin");
-            string position = Console.ReadLine();
-
-            Console.WriteLine("Iscinin salary-ni daxil edin");
-            double salary =Convert.ToDouble(Console.ReadLine());
-
-            if (no.ToLower() == employee.no.ToLower() && fullname.ToLower() == employee.Fullname.ToLower() && position.ToLower() == employee.Position.ToLower() && salary == employee.Salary);
+            Employee employee = humanResource.Employee.Find(e => e.no.ToLower() == no.ToLower());
+            if (employee==null)
             {
-                Console.WriteLine("İşçinin yeni adını daxil edin");
-                string newFullName = Console.ReadLine();
-                Console.WriteLine( );
+                Console.WriteLine("Bu nomrede isci yoxdur");
+                return;
+            }
 
-                Console.WriteLine("İşçinin yeni vəzifəsini daxil edin");
+            if (no.ToLower() == employee.no.ToLower());
+            {
+                Console.WriteLine("İşçinin yeni vezifesini daxil edin");
                 string newPosition = Console.ReadLine();
                 Console.WriteLine();
                 
-                Console.Write("İşçinin yeni maaşını daxil edin");
+                Console.WriteLine("İşçinin yeni maaşini daxil edin");
                 string newsalary = Console.ReadLine();
                 double newSalary;
                 Console.WriteLine();
@@ -322,7 +308,6 @@ namespace ConsoleProject
                 employee.DepartmentName = DepartamentName;
                 employee.Position = newPosition;
                 employee.Salary = newSalary;
-                employee.Fullname = newFullName;
 
                 Console.WriteLine("Proses tamamlandi");
             }

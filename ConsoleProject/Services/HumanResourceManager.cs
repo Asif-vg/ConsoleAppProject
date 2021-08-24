@@ -36,18 +36,7 @@ namespace ConsoleProject.Services
         }
         public void AddEmployee(Employee employee )  //Add New Employee to employee list
         {
-            //Employee newemployee = new Employee();
-            //newemployee.Fullname = employee.Fullname;
-            //newemployee.Position = employee.Position;
-            //newemployee.Salary =  employee.Salary;
-            //foreach (Departament item in Departament)
-            //{
-            //    if (item.Name.ToLower()==DepartamentName.ToLower())
-            //    {
-            //        item.Employee.Add(newemployee);
-            //    }
-            //}
-            _empmloyee.Add(employee);
+             _empmloyee.Add(employee);
         }
         public List<Departament> EditDepartaments(string name, string Newname) //Change departaments data
         {
@@ -55,7 +44,7 @@ namespace ConsoleProject.Services
         }
         public List<Employee> EditEmploye(string number, string fullName, double salary, string position) //Change employee data
         {
-            return _empmloyee.FindAll(e => e.no.ToLower() == number.ToLower() && e.Fullname.ToLower() == fullName.ToLower() && e.Salary == salary && e.Position.ToLower() == position.ToLower()).ToList();
+             return _empmloyee.FindAll(e => e.no.ToLower() == number.ToLower() && e.Fullname.ToLower() == fullName.ToLower() && e.Salary == salary && e.Position.ToLower() == position.ToLower()).ToList();
         }
         public List<Departament> GetAllDepartments()  //return Departement
         {
