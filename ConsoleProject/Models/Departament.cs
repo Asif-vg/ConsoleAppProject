@@ -15,7 +15,7 @@ namespace ConsoleProject.Models
             }
             set
             {
-                if (NameCheck(value))
+                if (value.Length>2)
                 {
                     _name = value;
                 }
@@ -26,22 +26,22 @@ namespace ConsoleProject.Models
             }
         }
 
-        private bool NameCheck(string name)
-        {
-            if (name.Length >= 2)
-            {
-                return false;
-            }
-            foreach (char item in name)
-            {
-                if (!Char.IsLetter(item))
-                {
-                    return false;
-                }
-            }
-            return true;
+        ////private bool NameCheck(string name)
+        ////{
+        ////    if (name.Length >= 2)
+        ////    {
+        ////        return false;
+        ////    }
+        ////    foreach (char item in name)
+        ////    {
+        ////        if (!Char.IsLetter(item))
+        ////        {
+        ////            return false;
+        ////        }
+        ////    }
+        ////    return true;
 
-        }
+        ////}
         private int _workerLimit;
         public int WorkerLimit
         {

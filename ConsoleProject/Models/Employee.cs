@@ -11,6 +11,7 @@ namespace ConsoleProject.Models
         {
             _counter++;
             No = _counter;
+           // no = DepartmentName.Substring(0, 2).ToUpper() + _counter;
         }
         public int No;
         public string no;
@@ -23,7 +24,7 @@ namespace ConsoleProject.Models
             }
             set
             {
-                if (NameCheck(value))
+                if (value.Length>2)
                 {
                     _position = value;
                 }
@@ -33,22 +34,22 @@ namespace ConsoleProject.Models
                 }
             }
         }
-        private bool NameCheck(string name)
-        {
-            if (name.Length >= 2)
-            {
-                return false;
-            }
-            foreach (char item in name)
-            {
-                if (!Char.IsLetter(item))
-                {
-                    return false;
-                }
-            }
-            return true;
+        //private bool NameCheck(string name)
+        //{
+        //    if (name.Length >= 2)
+        //    {
+        //        return false;
+        //    }
+        //    foreach (char item in name)
+        //    {
+        //        if (!Char.IsLetter(item))
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
 
-        }
+        //}
         public string Fullname;
         private double _salary;
         public double Salary
